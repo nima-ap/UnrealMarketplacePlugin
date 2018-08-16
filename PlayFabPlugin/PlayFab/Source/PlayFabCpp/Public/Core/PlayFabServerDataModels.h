@@ -3909,9 +3909,6 @@ namespace ServerModels
 
     struct PLAYFABCPP_API FGetCharacterLeaderboardRequest : public FPlayFabBaseModel
     {
-        // Unique PlayFab assigned ID for a specific character owned by a user
-        FString CharacterId;
-
         // [optional] Optional character type on which to filter the leaderboard entries.
         FString CharacterType;
 
@@ -3926,7 +3923,6 @@ namespace ServerModels
 
         FGetCharacterLeaderboardRequest() :
             FPlayFabBaseModel(),
-            CharacterId(),
             CharacterType(),
             MaxResultsCount(0),
             StartPosition(0),
@@ -3935,7 +3931,6 @@ namespace ServerModels
 
         FGetCharacterLeaderboardRequest(const FGetCharacterLeaderboardRequest& src) :
             FPlayFabBaseModel(),
-            CharacterId(src.CharacterId),
             CharacterType(src.CharacterType),
             MaxResultsCount(src.MaxResultsCount),
             StartPosition(src.StartPosition),

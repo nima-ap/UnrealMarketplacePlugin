@@ -49,7 +49,7 @@ bool UPlayFabAuthenticationAPI::GetEntityToken(
     } else if (PlayFabSettings::GetDeveloperSecretKey().Len() > 0) {
         authKey = TEXT("X-SecretKey"); authValue = PlayFabSettings::GetDeveloperSecretKey();
     }
-    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::getURL(TEXT("/Authentication/GetEntityToken")), request.toJSONString(), authKey, authValue);
+    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::GetUrl(TEXT("/Authentication/GetEntityToken")), request.toJSONString(), authKey, authValue);
     HttpRequest->OnProcessRequestComplete().BindRaw(this, &UPlayFabAuthenticationAPI::OnGetEntityTokenResult, SuccessDelegate, ErrorDelegate);
     return HttpRequest->ProcessRequest();
 }

@@ -44,7 +44,7 @@ bool UPlayFabCloudScriptAPI::ExecuteEntityCloudScript(
     if (PlayFabSettings::GetEntityToken().Len() == 0) {
         UE_LOG(LogPlayFab, Error, TEXT("You must call GetEntityToken API Method before calling this function."));
     }
-    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::getURL(TEXT("/CloudScript/ExecuteEntityCloudScript")), request.toJSONString(), TEXT("X-EntityToken"), PlayFabSettings::GetEntityToken());
+    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::GetUrl(TEXT("/CloudScript/ExecuteEntityCloudScript")), request.toJSONString(), TEXT("X-EntityToken"), PlayFabSettings::GetEntityToken());
     HttpRequest->OnProcessRequestComplete().BindRaw(this, &UPlayFabCloudScriptAPI::OnExecuteEntityCloudScriptResult, SuccessDelegate, ErrorDelegate);
     return HttpRequest->ProcessRequest();
 }

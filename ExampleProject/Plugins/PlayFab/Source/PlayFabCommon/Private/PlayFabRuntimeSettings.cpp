@@ -9,9 +9,7 @@
 // UPlayFabRuntimeSettings
 
 UPlayFabRuntimeSettings::UPlayFabRuntimeSettings()
-    : bUseDevelopmentEnvironment(false)
-    , DevelopmentEnvironmentURL(TEXT(".playfabsandbox.com"))
-    , ProductionEnvironmentURL(TEXT(".playfabapi.com"))
+    : ProductionEnvironmentURL(TEXT(".playfabapi.com"))
     , TitleId()
     , DeveloperSecretKey()
 {

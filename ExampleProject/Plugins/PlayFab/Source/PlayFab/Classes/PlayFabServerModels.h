@@ -634,9 +634,6 @@ struct FServerGetCharacterLeaderboardRequest
 {
     GENERATED_USTRUCT_BODY()
 public:
-    /** Unique PlayFab assigned ID for a specific character owned by a user */
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayFab | Server | Characters Models")
-        FString CharacterId;
     /** Optional character type on which to filter the leaderboard entries. */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayFab | Server | Characters Models")
         FString CharacterType;

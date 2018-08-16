@@ -44,7 +44,7 @@ bool UPlayFabDataAPI::AbortFileUploads(
     if (PlayFabSettings::GetEntityToken().Len() == 0) {
         UE_LOG(LogPlayFab, Error, TEXT("You must call GetEntityToken API Method before calling this function."));
     }
-    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::getURL(TEXT("/File/AbortFileUploads")), request.toJSONString(), TEXT("X-EntityToken"), PlayFabSettings::GetEntityToken());
+    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::GetUrl(TEXT("/File/AbortFileUploads")), request.toJSONString(), TEXT("X-EntityToken"), PlayFabSettings::GetEntityToken());
     HttpRequest->OnProcessRequestComplete().BindRaw(this, &UPlayFabDataAPI::OnAbortFileUploadsResult, SuccessDelegate, ErrorDelegate);
     return HttpRequest->ProcessRequest();
 }
@@ -71,7 +71,7 @@ bool UPlayFabDataAPI::DeleteFiles(
     if (PlayFabSettings::GetEntityToken().Len() == 0) {
         UE_LOG(LogPlayFab, Error, TEXT("You must call GetEntityToken API Method before calling this function."));
     }
-    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::getURL(TEXT("/File/DeleteFiles")), request.toJSONString(), TEXT("X-EntityToken"), PlayFabSettings::GetEntityToken());
+    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::GetUrl(TEXT("/File/DeleteFiles")), request.toJSONString(), TEXT("X-EntityToken"), PlayFabSettings::GetEntityToken());
     HttpRequest->OnProcessRequestComplete().BindRaw(this, &UPlayFabDataAPI::OnDeleteFilesResult, SuccessDelegate, ErrorDelegate);
     return HttpRequest->ProcessRequest();
 }
@@ -98,7 +98,7 @@ bool UPlayFabDataAPI::FinalizeFileUploads(
     if (PlayFabSettings::GetEntityToken().Len() == 0) {
         UE_LOG(LogPlayFab, Error, TEXT("You must call GetEntityToken API Method before calling this function."));
     }
-    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::getURL(TEXT("/File/FinalizeFileUploads")), request.toJSONString(), TEXT("X-EntityToken"), PlayFabSettings::GetEntityToken());
+    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::GetUrl(TEXT("/File/FinalizeFileUploads")), request.toJSONString(), TEXT("X-EntityToken"), PlayFabSettings::GetEntityToken());
     HttpRequest->OnProcessRequestComplete().BindRaw(this, &UPlayFabDataAPI::OnFinalizeFileUploadsResult, SuccessDelegate, ErrorDelegate);
     return HttpRequest->ProcessRequest();
 }
@@ -125,7 +125,7 @@ bool UPlayFabDataAPI::GetFiles(
     if (PlayFabSettings::GetEntityToken().Len() == 0) {
         UE_LOG(LogPlayFab, Error, TEXT("You must call GetEntityToken API Method before calling this function."));
     }
-    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::getURL(TEXT("/File/GetFiles")), request.toJSONString(), TEXT("X-EntityToken"), PlayFabSettings::GetEntityToken());
+    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::GetUrl(TEXT("/File/GetFiles")), request.toJSONString(), TEXT("X-EntityToken"), PlayFabSettings::GetEntityToken());
     HttpRequest->OnProcessRequestComplete().BindRaw(this, &UPlayFabDataAPI::OnGetFilesResult, SuccessDelegate, ErrorDelegate);
     return HttpRequest->ProcessRequest();
 }
@@ -152,7 +152,7 @@ bool UPlayFabDataAPI::GetObjects(
     if (PlayFabSettings::GetEntityToken().Len() == 0) {
         UE_LOG(LogPlayFab, Error, TEXT("You must call GetEntityToken API Method before calling this function."));
     }
-    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::getURL(TEXT("/Object/GetObjects")), request.toJSONString(), TEXT("X-EntityToken"), PlayFabSettings::GetEntityToken());
+    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::GetUrl(TEXT("/Object/GetObjects")), request.toJSONString(), TEXT("X-EntityToken"), PlayFabSettings::GetEntityToken());
     HttpRequest->OnProcessRequestComplete().BindRaw(this, &UPlayFabDataAPI::OnGetObjectsResult, SuccessDelegate, ErrorDelegate);
     return HttpRequest->ProcessRequest();
 }
@@ -179,7 +179,7 @@ bool UPlayFabDataAPI::InitiateFileUploads(
     if (PlayFabSettings::GetEntityToken().Len() == 0) {
         UE_LOG(LogPlayFab, Error, TEXT("You must call GetEntityToken API Method before calling this function."));
     }
-    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::getURL(TEXT("/File/InitiateFileUploads")), request.toJSONString(), TEXT("X-EntityToken"), PlayFabSettings::GetEntityToken());
+    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::GetUrl(TEXT("/File/InitiateFileUploads")), request.toJSONString(), TEXT("X-EntityToken"), PlayFabSettings::GetEntityToken());
     HttpRequest->OnProcessRequestComplete().BindRaw(this, &UPlayFabDataAPI::OnInitiateFileUploadsResult, SuccessDelegate, ErrorDelegate);
     return HttpRequest->ProcessRequest();
 }
@@ -206,7 +206,7 @@ bool UPlayFabDataAPI::SetObjects(
     if (PlayFabSettings::GetEntityToken().Len() == 0) {
         UE_LOG(LogPlayFab, Error, TEXT("You must call GetEntityToken API Method before calling this function."));
     }
-    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::getURL(TEXT("/Object/SetObjects")), request.toJSONString(), TEXT("X-EntityToken"), PlayFabSettings::GetEntityToken());
+    auto HttpRequest = PlayFabRequestHandler::SendRequest(PlayFabSettings::GetUrl(TEXT("/Object/SetObjects")), request.toJSONString(), TEXT("X-EntityToken"), PlayFabSettings::GetEntityToken());
     HttpRequest->OnProcessRequestComplete().BindRaw(this, &UPlayFabDataAPI::OnSetObjectsResult, SuccessDelegate, ErrorDelegate);
     return HttpRequest->ProcessRequest();
 }

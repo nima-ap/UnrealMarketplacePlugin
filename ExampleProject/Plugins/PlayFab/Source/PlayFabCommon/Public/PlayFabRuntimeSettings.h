@@ -18,14 +18,6 @@ class PLAYFABCOMMON_API UPlayFabRuntimeSettings : public UObject
 public:
     UPlayFabRuntimeSettings();
 
-    // Define if we want to use the sandbox URL
-    UPROPERTY(EditAnywhere, config, Category = Settings)
-    bool bUseDevelopmentEnvironment;
-
-    // URL endpoint of the PlayFab sandbox
-    UPROPERTY(EditAnywhere, config, Category = Settings)
-    FString DevelopmentEnvironmentURL;
-
     // URL endpoint of the PlayFab production environment
     UPROPERTY(EditAnywhere, config, Category = Settings)
     FString ProductionEnvironmentURL;

@@ -10,8 +10,8 @@
 
 namespace PlayFab
 {
-    class PlayFabSettings
-    {
+	class PlayFabSettings
+	{
 	public:
 		static const FString sdkVersion;
 		static const FString buildIdentifier;
@@ -44,12 +44,6 @@ namespace PlayFab
 		static const FString AD_TYPE_IDFA;
 		static const FString AD_TYPE_ANDROID_ID;
 
-        static FString getURL(const FString& callPath)
-        {
-			FString serverURL = GetServerURL();
-            if (serverURL.Len() == 0)
-                serverURL = TEXT("https://") + GetTitleId() + (GetUseDevelopmentEnvironment() ? GetDevelopmentEnvironmentURL() : GetProductionEnvironmentURL());
-            return serverURL + callPath;
-        }
+        static FString GetUrl(const FString& callPath);
     };
 }

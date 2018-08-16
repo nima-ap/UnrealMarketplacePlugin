@@ -25,8 +25,6 @@
 #include "PlayFabGroupsAPI.h" 
 #include "PlayFabProfilesAPI.h" 
 
-const FString IPlayFab::PlayFabURL(TEXT(".playfabapi.com"));
-
 class FPlayFab : public IPlayFab
 {
     /** IModuleInterface implementation */

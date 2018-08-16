@@ -9,16 +9,14 @@
 
 namespace PlayFabCommon
 {
-    class PlayFabCommonSettings
-    {
-    public:
-        static const FString sdkVersion;
+	class PlayFabCommonSettings
+	{
+	public:
+		static const FString sdkVersion;
         static const FString buildIdentifier;
         static const FString versionString;
 
-        static bool useDevelopmentEnvironment;
         static FString serverURL;
-        static FString developmentEnvironmentURL;
         static FString productionEnvironmentURL;
         static FString titleId; // You must set this value for PlayFabSdk to work properly (Found in the Game Manager for your title, at the PlayFab Website)
         static FString clientSessionTicket; // Secret token that represents your session in the Client API. Set by calling any login method in the Client API
@@ -41,8 +39,8 @@ namespace PlayFabCommon
         static FString getURL(const FString& callPath)
         {
             if (serverURL.Len() == 0)
-                serverURL = TEXT("https://") + titleId + (useDevelopmentEnvironment ? developmentEnvironmentURL : productionEnvironmentURL);
-            return serverURL + callPath;
+				serverURL = TEXT("https://") + titleId + productionEnvironmentURL;
+			return serverURL + callPath + TEXT("?sdk=") + versionString;
         }
     };
 }

@@ -7,14 +7,11 @@
 
 namespace PlayFabCommon
 {
-    const FString PlayFabCommonSettings::sdkVersion = "0.0.180709";
-    const FString PlayFabCommonSettings::buildIdentifier = "unrealcppsdk_manual";
-    const FString PlayFabCommonSettings::versionString = "UE4SDK-0.0.180709";
-
-    bool PlayFabCommonSettings::useDevelopmentEnvironment = false;
+    const FString PlayFabCommonSettings::sdkVersion = "";
+    const FString PlayFabCommonSettings::buildIdentifier = "";
+    const FString PlayFabCommonSettings::versionString = "UE4MKPL-";
 
 	FString PlayFabCommonSettings::serverURL;
-    FString PlayFabCommonSettings::developmentEnvironmentURL = ".playfabsandbox.com";
     FString PlayFabCommonSettings::productionEnvironmentURL = ".playfabapi.com";
     
 	FString PlayFabCommonSettings::titleId;

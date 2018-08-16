@@ -22,9 +22,6 @@ public:
     * @return Returns singleton instance, loading the module on demand if needed
     */
 
-    /** PlayFab URL */
-    static const FString PlayFabURL;
-
     static inline IPlayFab& Get()
     {
         return FModuleManager::LoadModuleChecked< IPlayFab >("PlayFab");
@@ -155,6 +152,11 @@ public:
 		return IPlayFabCommonModuleInterface::Get().GetDisableAdvertising();
 	}
 
+	inline FString getUrl(const FString& callPath) const
+	{
+		return IPlayFabCommonModuleInterface::Get().GetUrl(callPath);
+	}
+
 	inline int32 GetPendingCallCount()
     {
         int32 output;
@@ -171,10 +173,6 @@ public:
     }
 
 private:
-    // FString GameTitleId; // PlayFab TitleId
-    // FString EntityToken; // PlayFab entity session ticket
-    // FString SessionTicket; // PlayFab client session ticket
-    // FString PlayFabApiSecretKey; // PlayFab DeveloperSecretKey
     FCriticalSection pendingCallLock;
     int32 pendingCalls;
 };

@@ -1702,11 +1702,6 @@ UPlayFabServerAPI* UPlayFabServerAPI::GetCharacterLeaderboard(FServerGetCharacte
     manager->useSecretKey = true;
 
     // Serialize all the request properties to json
-    if (request.CharacterId.IsEmpty() || request.CharacterId == "") {
-        OutRestJsonObj->SetFieldNull(TEXT("CharacterId"));
-    } else {
-        OutRestJsonObj->SetStringField(TEXT("CharacterId"), request.CharacterId);
-    }
     if (request.CharacterType.IsEmpty() || request.CharacterType == "") {
         OutRestJsonObj->SetFieldNull(TEXT("CharacterType"));
     } else {
@@ -6707,7 +6702,7 @@ void UPlayFabServerAPI::Activate()
     IPlayFab* pfSettings = &(IPlayFab::Get());
 
     FString RequestUrl;
-    RequestUrl = TEXT("https://") + pfSettings->getGameTitleId() + IPlayFab::PlayFabURL + PlayFabRequestURL;
+    RequestUrl = pfSettings->getUrl(PlayFabRequestURL);
 
     TSharedRef<IHttpRequest> HttpRequest = FHttpModule::Get().CreateRequest();
     HttpRequest->SetURL(RequestUrl);

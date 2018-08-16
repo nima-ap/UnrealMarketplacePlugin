@@ -40,9 +40,7 @@ public:
 	virtual FString GetAD_TYPE_IDFA() const = 0;
 	virtual FString GetAD_TYPE_ANDROID_ID() const = 0;
 
-	virtual bool GetUseDevelopmentEnvironment() const = 0;
 	virtual FString GetServerURL() const = 0;
-	virtual FString GetDevelopmentEnvironmentURL() const = 0;
 	virtual FString GetProductionEnvironmentURL() const = 0;
 	virtual FString GetTitleId() const = 0;
 	virtual FString GetClientSessionTicket() const = 0;
@@ -52,9 +50,7 @@ public:
 	virtual FString GetAdvertisingIdValue() const = 0;
 	virtual bool GetDisableAdvertising() const = 0;
 	
-	virtual void SetUseDevelopmentEnvironment(bool useDevelopmentEnvironment) = 0;
 	virtual void SetServerURL(const FString& serverURL) = 0;
-	virtual void SetDevelopmentEnvironmentURL(const FString& developmentEnvironmentURL) = 0;
 	virtual void SetProductionEnvironmentURL(const FString& productionEnvironmentURL) = 0;
 	virtual void SetTitleId(const FString& titleId) = 0;
 	virtual void SetClientSessionTicket(const FString& clientSessionTicket) = 0;

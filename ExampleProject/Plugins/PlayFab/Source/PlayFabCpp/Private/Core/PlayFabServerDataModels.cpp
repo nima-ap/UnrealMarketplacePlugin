@@ -5779,8 +5779,6 @@ void PlayFab::ServerModels::FGetCharacterLeaderboardRequest::writeJSON(JsonWrite
 {
     writer->WriteObjectStart();
 
-    writer->WriteIdentifierPrefix(TEXT("CharacterId")); writer->WriteValue(CharacterId);
-
     if (CharacterType.IsEmpty() == false) { writer->WriteIdentifierPrefix(TEXT("CharacterType")); writer->WriteValue(CharacterType); }
 
     writer->WriteIdentifierPrefix(TEXT("MaxResultsCount")); writer->WriteValue(MaxResultsCount);
@@ -5795,13 +5793,6 @@ void PlayFab::ServerModels::FGetCharacterLeaderboardRequest::writeJSON(JsonWrite
 bool PlayFab::ServerModels::FGetCharacterLeaderboardRequest::readFromValue(const TSharedPtr<FJsonObject>& obj)
 {
     bool HasSucceeded = true;
-
-    const TSharedPtr<FJsonValue> CharacterIdValue = obj->TryGetField(TEXT("CharacterId"));
-    if (CharacterIdValue.IsValid() && !CharacterIdValue->IsNull())
-    {
-        FString TmpValue;
-        if (CharacterIdValue->TryGetString(TmpValue)) { CharacterId = TmpValue; }
-    }
 
     const TSharedPtr<FJsonValue> CharacterTypeValue = obj->TryGetField(TEXT("CharacterType"));
     if (CharacterTypeValue.IsValid() && !CharacterTypeValue->IsNull())
