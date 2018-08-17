@@ -7,9 +7,9 @@
 
 namespace PlayFabCommon
 {
-    const FString PlayFabCommonSettings::sdkVersion = "";
-    const FString PlayFabCommonSettings::buildIdentifier = "";
-    const FString PlayFabCommonSettings::versionString = "UE4MKPL-";
+    const FString PlayFabCommonSettings::sdkVersion = "1.0.180809";
+    const FString PlayFabCommonSettings::buildIdentifier = "default_manual_build";
+    const FString PlayFabCommonSettings::versionString = "UE4MKPL-1.0.180809";
 
 	FString PlayFabCommonSettings::serverURL;
     FString PlayFabCommonSettings::productionEnvironmentURL = ".playfabapi.com";

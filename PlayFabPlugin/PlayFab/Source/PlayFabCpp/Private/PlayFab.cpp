@@ -57,19 +57,17 @@ class FPlayFabModule : public IPlayFabModuleInterface
 void FPlayFabModule::StartupModule()
 {
     // create the API
-    ClientAPI = MakeShareable(new PlayFab::UPlayFabClientAPI());
-    AuthenticationAPI = MakeShareable(new PlayFab::UPlayFabAuthenticationAPI());
-    CloudScriptAPI = MakeShareable(new PlayFab::UPlayFabCloudScriptAPI());
-    DataAPI = MakeShareable(new PlayFab::UPlayFabDataAPI());
-    EventsAPI = MakeShareable(new PlayFab::UPlayFabEventsAPI());
-    GroupsAPI = MakeShareable(new PlayFab::UPlayFabGroupsAPI());
-    ProfilesAPI = MakeShareable(new PlayFab::UPlayFabProfilesAPI());
-
-#if WITH_SERVER_CODE
-    ServerAPI = MakeShareable(new PlayFab::UPlayFabServerAPI());
-    MatchmakerAPI = MakeShareable(new PlayFab::UPlayFabMatchmakerAPI());
-    AdminAPI = MakeShareable(new PlayFab::UPlayFabAdminAPI());
-#endif
+	
+        AdminAPI = MakeShareable(new PlayFab::UPlayFabAdminAPI());
+        ClientAPI = MakeShareable(new PlayFab::UPlayFabClientAPI());
+        MatchmakerAPI = MakeShareable(new PlayFab::UPlayFabMatchmakerAPI());
+        ServerAPI = MakeShareable(new PlayFab::UPlayFabServerAPI());
+        AuthenticationAPI = MakeShareable(new PlayFab::UPlayFabAuthenticationAPI());
+        CloudScriptAPI = MakeShareable(new PlayFab::UPlayFabCloudScriptAPI());
+        DataAPI = MakeShareable(new PlayFab::UPlayFabDataAPI());
+        EventsAPI = MakeShareable(new PlayFab::UPlayFabEventsAPI());
+        GroupsAPI = MakeShareable(new PlayFab::UPlayFabGroupsAPI());
+        ProfilesAPI = MakeShareable(new PlayFab::UPlayFabProfilesAPI());
 }
 
 void FPlayFabModule::ShutdownModule()

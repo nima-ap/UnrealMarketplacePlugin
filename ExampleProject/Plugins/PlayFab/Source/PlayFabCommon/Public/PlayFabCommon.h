@@ -71,4 +71,6 @@ public:
 	
 	virtual FString GetPhotonChatAppId() const = 0;
 	virtual void SetPhotonChatAppId(const FString & photonChatAppId) = 0;
+
+	virtual FString GetUrl(const FString& callPath) const = 0;
 };
