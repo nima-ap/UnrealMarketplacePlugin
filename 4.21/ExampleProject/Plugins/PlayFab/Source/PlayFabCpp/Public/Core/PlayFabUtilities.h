@@ -5,7 +5,6 @@
 #include "Misc/Paths.h"
 namespace PlayFab
 {
-    //class PLAYFABCPP_API PlayFabUtilities
     class PlayFabUtilities
     {
     private:
