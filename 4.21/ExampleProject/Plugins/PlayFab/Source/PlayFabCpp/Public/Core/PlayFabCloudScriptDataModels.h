@@ -25,6 +25,73 @@ namespace CloudScriptModels
     PLAYFABCPP_API CloudScriptRevisionOption readCloudScriptRevisionOptionFromValue(const TSharedPtr<FJsonValue>& value);
     PLAYFABCPP_API CloudScriptRevisionOption readCloudScriptRevisionOptionFromValue(const FString& value);
 
+    enum EffectType
+    {
+        EffectTypeAllow,
+        EffectTypeDeny
+    };
+
+    PLAYFABCPP_API void writeEffectTypeEnumJSON(EffectType enumVal, JsonWriter& writer);
+    PLAYFABCPP_API EffectType readEffectTypeFromValue(const TSharedPtr<FJsonValue>& value);
+    PLAYFABCPP_API EffectType readEffectTypeFromValue(const FString& value);
+
+    struct PLAYFABCPP_API FEmptyResult : public PlayFab::FPlayFabCppResultCommon
+    {
+        FEmptyResult() :
+            FPlayFabCppResultCommon()
+            {}
+
+        FEmptyResult(const FEmptyResult& src) :
+            FPlayFabCppResultCommon()
+            {}
+
+        FEmptyResult(const TSharedPtr<FJsonObject>& obj) : FEmptyResult()
+        {
+            readFromValue(obj);
+        }
+
+        ~FEmptyResult();
+
+        void writeJSON(JsonWriter& writer) const override;
+        bool readFromValue(const TSharedPtr<FJsonObject>& obj) override;
+    };
+
+    struct PLAYFABCPP_API FEntityDataObject : public PlayFab::FPlayFabCppBaseModel
+    {
+        // [optional] Un-escaped JSON object, if DataAsObject is true.
+        FJsonKeeper DataObject;
+
+        // [optional] Escaped string JSON body of the object, if DataAsObject is default or false.
+        FString EscapedDataObject;
+
+        // [optional] Name of this object.
+        FString ObjectName;
+
+        FEntityDataObject() :
+            FPlayFabCppBaseModel(),
+            DataObject(),
+            EscapedDataObject(),
+            ObjectName()
+            {}
+
+        FEntityDataObject(const FEntityDataObject& src) :
+            FPlayFabCppBaseModel(),
+            DataObject(src.DataObject),
+            EscapedDataObject(src.EscapedDataObject),
+            ObjectName(src.ObjectName)
+            {}
+
+        FEntityDataObject(const TSharedPtr<FJsonObject>& obj) : FEntityDataObject()
+        {
+            readFromValue(obj);
+        }
+
+        ~FEntityDataObject();
+
+        void writeJSON(JsonWriter& writer) const override;
+        bool readFromValue(const TSharedPtr<FJsonObject>& obj) override;
+    };
+
     struct PLAYFABCPP_API FEntityKey : public PlayFab::FPlayFabCppBaseModel
     {
         // Unique ID of the entity.
@@ -51,6 +118,262 @@ namespace CloudScriptModels
         }
 
         ~FEntityKey();
+
+        void writeJSON(JsonWriter& writer) const override;
+        bool readFromValue(const TSharedPtr<FJsonObject>& obj) override;
+    };
+
+    struct PLAYFABCPP_API FEntityLineage : public PlayFab::FPlayFabCppBaseModel
+    {
+        // [optional] The Character Id of the associated entity.
+        FString CharacterId;
+
+        // [optional] The Group Id of the associated entity.
+        FString GroupId;
+
+        // [optional] The Master Player Account Id of the associated entity.
+        FString MasterPlayerAccountId;
+
+        // [optional] The Namespace Id of the associated entity.
+        FString NamespaceId;
+
+        // [optional] The Title Id of the associated entity.
+        FString TitleId;
+
+        // [optional] The Title Player Account Id of the associated entity.
+        FString TitlePlayerAccountId;
+
+        FEntityLineage() :
+            FPlayFabCppBaseModel(),
+            CharacterId(),
+            GroupId(),
+            MasterPlayerAccountId(),
+            NamespaceId(),
+            TitleId(),
+            TitlePlayerAccountId()
+            {}
+
+        FEntityLineage(const FEntityLineage& src) :
+            FPlayFabCppBaseModel(),
+            CharacterId(src.CharacterId),
+            GroupId(src.GroupId),
+            MasterPlayerAccountId(src.MasterPlayerAccountId),
+            NamespaceId(src.NamespaceId),
+            TitleId(src.TitleId),
+            TitlePlayerAccountId(src.TitlePlayerAccountId)
+            {}
+
+        FEntityLineage(const TSharedPtr<FJsonObject>& obj) : FEntityLineage()
+        {
+            readFromValue(obj);
+        }
+
+        ~FEntityLineage();
+
+        void writeJSON(JsonWriter& writer) const override;
+        bool readFromValue(const TSharedPtr<FJsonObject>& obj) override;
+    };
+
+    struct PLAYFABCPP_API FEntityPermissionStatement : public PlayFab::FPlayFabCppBaseModel
+    {
+        // The action this statement effects. May be 'Read', 'Write' or '*' for both read and write.
+        FString Action;
+
+        // [optional] A comment about the statement. Intended solely for bookkeeping and debugging.
+        FString Comment;
+
+        // [optional] Additional conditions to be applied for entity resources.
+        FJsonKeeper Condition;
+
+        // The effect this statement will have. It may be either Allow or Deny
+        EffectType Effect;
+
+        // The principal this statement will effect.
+        FJsonKeeper Principal;
+
+        // The resource this statements effects. Similar to 'pfrn:data--title![Title ID]/Profile/*'
+        FString Resource;
+
+        FEntityPermissionStatement() :
+            FPlayFabCppBaseModel(),
+            Action(),
+            Comment(),
+            Condition(),
+            Effect(),
+            Principal(),
+            Resource()
+            {}
+
+        FEntityPermissionStatement(const FEntityPermissionStatement& src) :
+            FPlayFabCppBaseModel(),
+            Action(src.Action),
+            Comment(src.Comment),
+            Condition(src.Condition),
+            Effect(src.Effect),
+            Principal(src.Principal),
+            Resource(src.Resource)
+            {}
+
+        FEntityPermissionStatement(const TSharedPtr<FJsonObject>& obj) : FEntityPermissionStatement()
+        {
+            readFromValue(obj);
+        }
+
+        ~FEntityPermissionStatement();
+
+        void writeJSON(JsonWriter& writer) const override;
+        bool readFromValue(const TSharedPtr<FJsonObject>& obj) override;
+    };
+
+    struct PLAYFABCPP_API FEntityProfileFileMetadata : public PlayFab::FPlayFabCppBaseModel
+    {
+        // [optional] Checksum value for the file
+        FString Checksum;
+
+        // [optional] Name of the file
+        FString FileName;
+
+        // Last UTC time the file was modified
+        FDateTime LastModified;
+
+        // Storage service's reported byte count
+        int32 Size;
+
+        FEntityProfileFileMetadata() :
+            FPlayFabCppBaseModel(),
+            Checksum(),
+            FileName(),
+            LastModified(0),
+            Size(0)
+            {}
+
+        FEntityProfileFileMetadata(const FEntityProfileFileMetadata& src) :
+            FPlayFabCppBaseModel(),
+            Checksum(src.Checksum),
+            FileName(src.FileName),
+            LastModified(src.LastModified),
+            Size(src.Size)
+            {}
+
+        FEntityProfileFileMetadata(const TSharedPtr<FJsonObject>& obj) : FEntityProfileFileMetadata()
+        {
+            readFromValue(obj);
+        }
+
+        ~FEntityProfileFileMetadata();
+
+        void writeJSON(JsonWriter& writer) const override;
+        bool readFromValue(const TSharedPtr<FJsonObject>& obj) override;
+    };
+
+    struct PLAYFABCPP_API FEntityProfileBody : public PlayFab::FPlayFabCppBaseModel
+    {
+        // The creation time of this profile in UTC.
+        FDateTime Created;
+
+        /**
+         * [optional] The display name of the entity. This field may serve different purposes for different entity types. i.e.: for a title
+         * player account it could represent the display name of the player, whereas on a character it could be character's name.
+         */
+        FString DisplayName;
+
+        // [optional] The entity id and type.
+        TSharedPtr<FEntityKey> Entity;
+
+        // [optional] The chain of responsibility for this entity. Use Lineage.
+        FString EntityChain;
+
+        // [optional] The files on this profile.
+        TMap<FString, FEntityProfileFileMetadata> Files;
+        // [optional] The language on this profile.
+        FString Language;
+
+        // [optional] The lineage of this profile.
+        TSharedPtr<FEntityLineage> Lineage;
+
+        // [optional] The objects on this profile.
+        TMap<FString, FEntityDataObject> Objects;
+        /**
+         * [optional] The permissions that govern access to this entity profile and its properties. Only includes permissions set on this
+         * profile, not global statements from titles and namespaces.
+         */
+        TArray<FEntityPermissionStatement> Permissions;
+        /**
+         * The version number of the profile in persistent storage at the time of the read. Used for optional optimistic
+         * concurrency during update.
+         */
+        int32 VersionNumber;
+
+        FEntityProfileBody() :
+            FPlayFabCppBaseModel(),
+            Created(0),
+            DisplayName(),
+            Entity(nullptr),
+            EntityChain(),
+            Files(),
+            Language(),
+            Lineage(nullptr),
+            Objects(),
+            Permissions(),
+            VersionNumber(0)
+            {}
+
+        FEntityProfileBody(const FEntityProfileBody& src) :
+            FPlayFabCppBaseModel(),
+            Created(src.Created),
+            DisplayName(src.DisplayName),
+            Entity(src.Entity.IsValid() ? MakeShareable(new FEntityKey(*src.Entity)) : nullptr),
+            EntityChain(src.EntityChain),
+            Files(src.Files),
+            Language(src.Language),
+            Lineage(src.Lineage.IsValid() ? MakeShareable(new FEntityLineage(*src.Lineage)) : nullptr),
+            Objects(src.Objects),
+            Permissions(src.Permissions),
+            VersionNumber(src.VersionNumber)
+            {}
+
+        FEntityProfileBody(const TSharedPtr<FJsonObject>& obj) : FEntityProfileBody()
+        {
+            readFromValue(obj);
+        }
+
+        ~FEntityProfileBody();
+
+        void writeJSON(JsonWriter& writer) const override;
+        bool readFromValue(const TSharedPtr<FJsonObject>& obj) override;
+    };
+
+    struct PLAYFABCPP_API FEntityRequest : public PlayFab::FPlayFabCppBaseModel
+    {
+        // [optional] undefined
+        TSharedPtr<FEntityProfileBody> EntityProfile;
+
+        // [optional] undefined
+        FJsonKeeper FunctionParameter;
+
+        // [optional] undefined
+        TSharedPtr<FEntityKey> RequestorEntity;
+
+        FEntityRequest() :
+            FPlayFabCppBaseModel(),
+            EntityProfile(nullptr),
+            FunctionParameter(),
+            RequestorEntity(nullptr)
+            {}
+
+        FEntityRequest(const FEntityRequest& src) :
+            FPlayFabCppBaseModel(),
+            EntityProfile(src.EntityProfile.IsValid() ? MakeShareable(new FEntityProfileBody(*src.EntityProfile)) : nullptr),
+            FunctionParameter(src.FunctionParameter),
+            RequestorEntity(src.RequestorEntity.IsValid() ? MakeShareable(new FEntityKey(*src.RequestorEntity)) : nullptr)
+            {}
+
+        FEntityRequest(const TSharedPtr<FJsonObject>& obj) : FEntityRequest()
+        {
+            readFromValue(obj);
+        }
+
+        ~FEntityRequest();
 
         void writeJSON(JsonWriter& writer) const override;
         bool readFromValue(const TSharedPtr<FJsonObject>& obj) override;
@@ -274,6 +597,188 @@ namespace CloudScriptModels
         }
 
         ~FExecuteEntityCloudScriptRequest();
+
+        void writeJSON(JsonWriter& writer) const override;
+        bool readFromValue(const TSharedPtr<FJsonObject>& obj) override;
+    };
+
+    struct PLAYFABCPP_API FExecuteFunctionRequest : public PlayFab::FPlayFabCppRequestCommon
+    {
+        // [optional] The entity to perform this action on.
+        TSharedPtr<FEntityKey> Entity;
+
+        // The name of the CloudScript function to execute
+        FString FunctionName;
+
+        // [optional] Object that is passed in to the function as the args parameter of the entity data structure
+        FJsonKeeper FunctionParameter;
+
+        /**
+         * [optional] Generate a 'entity_executed_cloudscript' PlayStream event containing the results of the function execution and other
+         * contextual information. This event will show up in the PlayStream debugger console for the player in Game Manager.
+         */
+        Boxed<bool> GeneratePlayStreamEvent;
+
+        FExecuteFunctionRequest() :
+            FPlayFabCppRequestCommon(),
+            Entity(nullptr),
+            FunctionName(),
+            FunctionParameter(),
+            GeneratePlayStreamEvent()
+            {}
+
+        FExecuteFunctionRequest(const FExecuteFunctionRequest& src) :
+            FPlayFabCppRequestCommon(),
+            Entity(src.Entity.IsValid() ? MakeShareable(new FEntityKey(*src.Entity)) : nullptr),
+            FunctionName(src.FunctionName),
+            FunctionParameter(src.FunctionParameter),
+            GeneratePlayStreamEvent(src.GeneratePlayStreamEvent)
+            {}
+
+        FExecuteFunctionRequest(const TSharedPtr<FJsonObject>& obj) : FExecuteFunctionRequest()
+        {
+            readFromValue(obj);
+        }
+
+        ~FExecuteFunctionRequest();
+
+        void writeJSON(JsonWriter& writer) const override;
+        bool readFromValue(const TSharedPtr<FJsonObject>& obj) override;
+    };
+
+    struct PLAYFABCPP_API FExecuteFunctionResult : public PlayFab::FPlayFabCppResultCommon
+    {
+        double ExecutionTimeSeconds;
+
+        // [optional] undefined
+        FString FunctionName;
+
+        // [optional] undefined
+        FJsonKeeper FunctionResult;
+
+        // [optional] undefined
+        Boxed<bool> FunctionResultTooLarge;
+
+        FExecuteFunctionResult() :
+            FPlayFabCppResultCommon(),
+            ExecutionTimeSeconds(0),
+            FunctionName(),
+            FunctionResult(),
+            FunctionResultTooLarge()
+            {}
+
+        FExecuteFunctionResult(const FExecuteFunctionResult& src) :
+            FPlayFabCppResultCommon(),
+            ExecutionTimeSeconds(src.ExecutionTimeSeconds),
+            FunctionName(src.FunctionName),
+            FunctionResult(src.FunctionResult),
+            FunctionResultTooLarge(src.FunctionResultTooLarge)
+            {}
+
+        FExecuteFunctionResult(const TSharedPtr<FJsonObject>& obj) : FExecuteFunctionResult()
+        {
+            readFromValue(obj);
+        }
+
+        ~FExecuteFunctionResult();
+
+        void writeJSON(JsonWriter& writer) const override;
+        bool readFromValue(const TSharedPtr<FJsonObject>& obj) override;
+    };
+
+    struct PLAYFABCPP_API FGetArgumentsForExecuteFunctionRequest : public PlayFab::FPlayFabCppRequestCommon
+    {
+        // [optional] undefined
+        FString CallingEntity;
+
+        // [optional] The entity to perform this action on.
+        TSharedPtr<FEntityKey> Entity;
+
+        // [optional] undefined
+        TSharedPtr<FExecuteFunctionRequest> Request;
+
+        FGetArgumentsForExecuteFunctionRequest() :
+            FPlayFabCppRequestCommon(),
+            CallingEntity(),
+            Entity(nullptr),
+            Request(nullptr)
+            {}
+
+        FGetArgumentsForExecuteFunctionRequest(const FGetArgumentsForExecuteFunctionRequest& src) :
+            FPlayFabCppRequestCommon(),
+            CallingEntity(src.CallingEntity),
+            Entity(src.Entity.IsValid() ? MakeShareable(new FEntityKey(*src.Entity)) : nullptr),
+            Request(src.Request.IsValid() ? MakeShareable(new FExecuteFunctionRequest(*src.Request)) : nullptr)
+            {}
+
+        FGetArgumentsForExecuteFunctionRequest(const TSharedPtr<FJsonObject>& obj) : FGetArgumentsForExecuteFunctionRequest()
+        {
+            readFromValue(obj);
+        }
+
+        ~FGetArgumentsForExecuteFunctionRequest();
+
+        void writeJSON(JsonWriter& writer) const override;
+        bool readFromValue(const TSharedPtr<FJsonObject>& obj) override;
+    };
+
+    struct PLAYFABCPP_API FGetArgumentsForExecuteFunctionResult : public PlayFab::FPlayFabCppResultCommon
+    {
+        // [optional] undefined
+        TSharedPtr<FEntityRequest> Request;
+
+        FGetArgumentsForExecuteFunctionResult() :
+            FPlayFabCppResultCommon(),
+            Request(nullptr)
+            {}
+
+        FGetArgumentsForExecuteFunctionResult(const FGetArgumentsForExecuteFunctionResult& src) :
+            FPlayFabCppResultCommon(),
+            Request(src.Request.IsValid() ? MakeShareable(new FEntityRequest(*src.Request)) : nullptr)
+            {}
+
+        FGetArgumentsForExecuteFunctionResult(const TSharedPtr<FJsonObject>& obj) : FGetArgumentsForExecuteFunctionResult()
+        {
+            readFromValue(obj);
+        }
+
+        ~FGetArgumentsForExecuteFunctionResult();
+
+        void writeJSON(JsonWriter& writer) const override;
+        bool readFromValue(const TSharedPtr<FJsonObject>& obj) override;
+    };
+
+    struct PLAYFABCPP_API FRegisterFunctionRequest : public PlayFab::FPlayFabCppRequestCommon
+    {
+        // [optional] The entity to perform this action on.
+        TSharedPtr<FEntityKey> Entity;
+
+        // The name of the function to register
+        FString FunctionName;
+
+        // Full URL for Azure Function that implements the function.
+        FString FunctionUrl;
+
+        FRegisterFunctionRequest() :
+            FPlayFabCppRequestCommon(),
+            Entity(nullptr),
+            FunctionName(),
+            FunctionUrl()
+            {}
+
+        FRegisterFunctionRequest(const FRegisterFunctionRequest& src) :
+            FPlayFabCppRequestCommon(),
+            Entity(src.Entity.IsValid() ? MakeShareable(new FEntityKey(*src.Entity)) : nullptr),
+            FunctionName(src.FunctionName),
+            FunctionUrl(src.FunctionUrl)
+            {}
+
+        FRegisterFunctionRequest(const TSharedPtr<FJsonObject>& obj) : FRegisterFunctionRequest()
+        {
+            readFromValue(obj);
+        }
+
+        ~FRegisterFunctionRequest();
 
         void writeJSON(JsonWriter& writer) const override;
         bool readFromValue(const TSharedPtr<FJsonObject>& obj) override;

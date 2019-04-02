@@ -5,6 +5,7 @@
 
 #include "PlayFabSettings.h"
 #include "PlayFabCommon.h"
+#include "PlayFabUtilities.h"
 
 namespace PlayFab
 {
@@ -27,6 +28,10 @@ namespace PlayFab
     FString PlayFabSettings::GetTitleId()
     {
         return IPlayFabCommonModuleInterface::Get().GetTitleId();
+    }
+    FString PlayFabSettings::GetLocalApiServer()
+    {
+        return PlayFabUtilities::GetLocalSettingsFileProperty(TEXT("LocalApiServer"));
     }
     FString PlayFabSettings::GetClientSessionTicket()
     {

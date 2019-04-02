@@ -23,6 +23,9 @@ namespace PlayFab
     {
     public:
         DECLARE_DELEGATE_OneParam(FExecuteEntityCloudScriptDelegate, const CloudScriptModels::FExecuteCloudScriptResult&);
+        DECLARE_DELEGATE_OneParam(FExecuteFunctionDelegate, const CloudScriptModels::FExecuteFunctionResult&);
+        DECLARE_DELEGATE_OneParam(FGetArgumentsForExecuteFunctionDelegate, const CloudScriptModels::FGetArgumentsForExecuteFunctionResult&);
+        DECLARE_DELEGATE_OneParam(FRegisterFunctionDelegate, const CloudScriptModels::FEmptyResult&);
 
 
     private:
@@ -60,10 +63,30 @@ namespace PlayFab
          * Executes CloudScript with the entity profile that is defined in the request.
          */
         bool ExecuteEntityCloudScript(CloudScriptModels::FExecuteEntityCloudScriptRequest& request, const FExecuteEntityCloudScriptDelegate& SuccessDelegate = FExecuteEntityCloudScriptDelegate(), const FPlayFabErrorDelegate& ErrorDelegate = FPlayFabErrorDelegate());
+        /**
+         * Cloud Script is one of PlayFab's most versatile features. It allows client code to request execution of any kind of
+         * custom server-side functionality you can implement, and it can be used in conjunction with virtually anything.
+         * Executes an Azure Function with the entity profile that is defined in the request.
+         */
+        bool ExecuteFunction(CloudScriptModels::FExecuteFunctionRequest& request, const FExecuteFunctionDelegate& SuccessDelegate = FExecuteFunctionDelegate(), const FPlayFabErrorDelegate& ErrorDelegate = FPlayFabErrorDelegate());
+        /**
+         * Cloud Script is one of PlayFab's most versatile features. It allows client code to request execution of any kind of
+         * custom server-side functionality you can implement, and it can be used in conjunction with virtually anything.
+         * Returns a data structure that can be used to pass to an Azure Function locally.
+         */
+        bool GetArgumentsForExecuteFunction(CloudScriptModels::FGetArgumentsForExecuteFunctionRequest& request, const FGetArgumentsForExecuteFunctionDelegate& SuccessDelegate = FGetArgumentsForExecuteFunctionDelegate(), const FPlayFabErrorDelegate& ErrorDelegate = FPlayFabErrorDelegate());
+        /**
+         * Registers an Azure function with a title.
+         * A title can have many functions, RegisterFunction associates a function name to a URL that can be invoked by CloudScript.ExecuteFunction. 
+         */
+        bool RegisterFunction(CloudScriptModels::FRegisterFunctionRequest& request, const FRegisterFunctionDelegate& SuccessDelegate = FRegisterFunctionDelegate(), const FPlayFabErrorDelegate& ErrorDelegate = FPlayFabErrorDelegate());
 
     private:
         // ------------ Generated result handlers
         void OnExecuteEntityCloudScriptResult(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FExecuteEntityCloudScriptDelegate SuccessDelegate, FPlayFabErrorDelegate ErrorDelegate);
+        void OnExecuteFunctionResult(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FExecuteFunctionDelegate SuccessDelegate, FPlayFabErrorDelegate ErrorDelegate);
+        void OnGetArgumentsForExecuteFunctionResult(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FGetArgumentsForExecuteFunctionDelegate SuccessDelegate, FPlayFabErrorDelegate ErrorDelegate);
+        void OnRegisterFunctionResult(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FRegisterFunctionDelegate SuccessDelegate, FPlayFabErrorDelegate ErrorDelegate);
 
     };
 };
