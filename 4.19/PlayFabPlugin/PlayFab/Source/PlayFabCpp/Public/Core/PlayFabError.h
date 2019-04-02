@@ -452,6 +452,7 @@ namespace PlayFab
         PlayFabErrorCannotEnableMultiplayerServersForTitle = 1443,
         PlayFabErrorWriteAttemptedDuringExport = 1444,
         PlayFabErrorMultiplayerServerTitleQuotaCoresExceeded = 1445,
+        PlayFabErrorAutomationRuleNotFound = 1446,
         PlayFabErrorMatchmakingEntityInvalid = 2001,
         PlayFabErrorMatchmakingPlayerAttributesInvalid = 2002,
         PlayFabErrorMatchmakingQueueNotFound = 2016,

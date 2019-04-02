@@ -474,6 +474,7 @@ FString UPlayFabUtilities::getErrorText(int32 code)
     case 1443: returnText = "CannotEnableMultiplayerServersForTitle"; break;
     case 1444: returnText = "WriteAttemptedDuringExport"; break;
     case 1445: returnText = "MultiplayerServerTitleQuotaCoresExceeded"; break;
+    case 1446: returnText = "AutomationRuleNotFound"; break;
     case 2001: returnText = "MatchmakingEntityInvalid"; break;
     case 2002: returnText = "MatchmakingPlayerAttributesInvalid"; break;
     case 2016: returnText = "MatchmakingQueueNotFound"; break;
